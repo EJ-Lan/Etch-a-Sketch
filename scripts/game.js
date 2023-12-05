@@ -1,12 +1,36 @@
-let gridNum = 16; // Number of square divs
+const gridNum = 16; // Number of square divs
 let isMouseDown = false; // Mouse down starts as false
 let color = '#ff0000'; // Initialize color
 
-let changeColor = (element) => {
+const changeColor = (element) => {
     element.style.backgroundColor = color;
-}
+};
 
-let createGrid = (gridNum) => {
+const setupEventListenersForGridBox = (gridBox) => {
+    gridBox.addEventListener('mousedown', () => {
+        isMouseDown = true;
+        changeColor(gridBox);
+    });
+
+    gridBox.addEventListener('mouseover', () => {
+        if (isMouseDown) {
+            changeColor(gridBox);
+        }
+    });
+
+    gridBox.addEventListener('mouseup', () => {
+        isMouseDown = false;
+    });
+};
+
+const setupColorPickerEventListener = () => {
+    const colorPicker = document.querySelector('.color-picker');
+    colorPicker.addEventListener('input', (event) => {
+        color = event.target.value;
+    });
+};
+
+const createGrid = (gridNum) => {
     const gridContainer = document.querySelector('.grid-container');
     
     for (let rowIndex = 0; rowIndex < gridNum; rowIndex++) {
@@ -16,39 +40,20 @@ let createGrid = (gridNum) => {
         for (let boxIndex = 0; boxIndex < gridNum; boxIndex++) {
             const gridBox = document.createElement('div');
             gridBox.classList.add('grid-box');
+            setupEventListenersForGridBox(gridBox);
             gridRow.appendChild(gridBox);
         }
         gridContainer.appendChild(gridRow);
     }
+};
 
-    let gridBoxes = document.querySelectorAll('.grid-box');
+const setupEtchASketch = () => {
+    createGrid(gridNum);
+    setupColorPickerEventListener();
 
-    gridBoxes.forEach(box => {
-        box.addEventListener('mousedown', () => {
-            isMouseDown = true;
-            changeColor(box);
-        });
-
-        box.addEventListener('mouseover', () => {
-            if (isMouseDown) {
-                changeColor(box);
-            }
-        });
-
-        box.addEventListener('mouseup', () => {
-            isMouseDown = false;
-        });
+    document.addEventListener('mouseup', () => {
+        isMouseDown = false;
     });
+};
 
-    const colorPicker = document.querySelector('.color-picker');
-    colorPicker.addEventListener('input', (event) => {
-        color = event.target.value;
-    });
-
-}
-
-createGrid(gridNum);
-
-document.addEventListener('mouseup', () => {
-    isMouseDown = false;
-});
+setupEtchASketch();
