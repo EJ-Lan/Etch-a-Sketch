@@ -1,9 +1,22 @@
 const gridNum = 16; // Number of square divs
 let isMouseDown = false; // Mouse down starts as false
 let color = '#ff0000'; // Initialize color
+let eraserActive = false; // Is the eraser button clicked?
 
 const changeColor = (element) => {
-    element.style.backgroundColor = color;
+    if (eraserActive) {
+        element.style.backgroundColor = '#DADADA'; // Eraser color
+    } else {
+        element.style.backgroundColor = color; // Drawing color
+    }
+};
+
+const setupEraserButtonEventListener = () => {
+    const eraserButton = document.querySelector('.eraser-button');
+    eraserButton.addEventListener('click', () => {
+        eraserActive = !eraserActive; // Toggle eraser mode
+        eraserButton.classList.toggle('active', eraserActive); // Change style if active
+    });
 };
 
 const setupEventListenersForGridBox = (gridBox) => {
@@ -50,6 +63,8 @@ const createGrid = (gridNum) => {
 const setupEtchASketch = () => {
     createGrid(gridNum);
     setupColorPickerEventListener();
+    setupEraserButtonEventListener();
+
 
     document.addEventListener('mouseup', () => {
         isMouseDown = false;
