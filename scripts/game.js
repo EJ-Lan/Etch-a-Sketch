@@ -7,10 +7,10 @@ let createGrid = (gridNum) => {
         const gridRow = document.createElement('div');
         gridRow.classList.add('grid-row');
 
-        for (let colIndex = 0; colIndex < gridNum; colIndex) {
-            const gridCol = document.createElement('div');
-            gridCol.classList.add('grid-col');
-            gridRow.appendChild(gridCol);
+        for (let boxIndex = 0; boxIndex < gridNum; boxIndex) {
+            const gridBox = document.createElement('div');
+            gridBox.classList.add('grid-box');
+            gridRow.appendChild(gridBox);
         }
         gridContainer.appendChild(gridRow);
     }
