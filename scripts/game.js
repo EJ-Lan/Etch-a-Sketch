@@ -43,9 +43,35 @@ const setupColorPickerEventListener = () => {
     });
 };
 
+const setupChangeSizeEventListener = () => {
+    const sizeButton = document.querySelector('.size-button');
+    sizeButton.addEventListener('click', () => {
+        const userInput = prompt("Enter the number of squares per side for the new grid (1-100):");
+        if (userInput !== null) { // Check if the user pressed "Cancel"
+            const newSize = parseInt(userInput);
+            if (newSize >= 1 && newSize <= 100) {
+                clearGrid();
+                createGrid(newSize);
+            } else {
+                alert("Please enter a number between 1 and 100.");
+            }
+        }
+    });
+};
+
+const clearGrid = () => {
+    const gridContainer = document.querySelector('.grid-container');
+    gridContainer.innerHTML = ''; 
+};
+
+
 const createGrid = (gridNum) => {
     const gridContainer = document.querySelector('.grid-container');
-    
+    clearGrid(); 
+
+    // Calculate the size of each grid box based on the container size and the number of grid boxes
+    const boxSize = 960 / gridNum; // Assuming the container width is 960px
+
     for (let rowIndex = 0; rowIndex < gridNum; rowIndex++) {
         const gridRow = document.createElement('div');
         gridRow.classList.add('grid-row');
@@ -53,6 +79,8 @@ const createGrid = (gridNum) => {
         for (let boxIndex = 0; boxIndex < gridNum; boxIndex++) {
             const gridBox = document.createElement('div');
             gridBox.classList.add('grid-box');
+            gridBox.style.width = `${boxSize}px`;
+            gridBox.style.height = `${boxSize}px`;
             setupEventListenersForGridBox(gridBox);
             gridRow.appendChild(gridBox);
         }
@@ -64,6 +92,7 @@ const setupEtchASketch = () => {
     createGrid(gridNum);
     setupColorPickerEventListener();
     setupEraserButtonEventListener();
+    setupChangeSizeEventListener();
 
 
     document.addEventListener('mouseup', () => {
