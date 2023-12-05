@@ -7,7 +7,7 @@ let createGrid = (gridNum) => {
         const gridRow = document.createElement('div');
         gridRow.classList.add('grid-row');
 
-        for (let boxIndex = 0; boxIndex < gridNum; boxIndex) {
+        for (let boxIndex = 0; boxIndex < gridNum; boxIndex++) {
             const gridBox = document.createElement('div');
             gridBox.classList.add('grid-box');
             gridRow.appendChild(gridBox);
