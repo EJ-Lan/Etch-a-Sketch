@@ -23,4 +23,4 @@ This project is a web-based version of the classic Etch-a-Sketch game. It allows
 To start using the Etch-a-Sketch game, simply clone this repository and open the `index.html` file in a web browser.
 
 ```bash
-git clone [repository-url]
+git clone git@github.com:EJ-Lan/Etch-a-Sketch.git
