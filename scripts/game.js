@@ -59,11 +59,22 @@ const setupChangeSizeEventListener = () => {
     });
 };
 
-const clearGrid = () => {
-    const gridContainer = document.querySelector('.grid-container');
-    gridContainer.innerHTML = ''; 
+const setupClearButtonEventListener = () => {
+    const clearButton = document.querySelector('.clear-button');
+    clearButton.addEventListener('click', clearGridColors);
 };
 
+const clearGrid = () => {
+    const gridContainer = document.querySelector('.grid-container');
+    gridContainer.innerText = ''; 
+};
+
+const clearGridColors = () => {
+    const gridBoxes = document.querySelectorAll('.grid-box');
+    gridBoxes.forEach(box => {
+        box.style.backgroundColor = '#DADADA';
+    });
+};
 
 const createGrid = (gridNum) => {
     const gridContainer = document.querySelector('.grid-container');
@@ -93,6 +104,7 @@ const setupEtchASketch = () => {
     setupColorPickerEventListener();
     setupEraserButtonEventListener();
     setupChangeSizeEventListener();
+    setupClearButtonEventListener();
 
 
     document.addEventListener('mouseup', () => {
