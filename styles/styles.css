@@ -7,8 +7,9 @@ body {
 }
 
 .grid-box {
-    width: 50px;
+    flex: 1;
     height: 50px;
+    width: 50px;
     border: 1px solid black;
-    background-color: blue;
+    background-color: #DADADA;
 }
