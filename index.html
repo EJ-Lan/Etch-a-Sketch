@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Etch-a-Sketch</title>
-  <link rel="stylesheet" href="styles/styles.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Etch-a-Sketch</title>
+	<link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+	<div class="header">
+		<h1 class="page-heading">Etch-a-Sketch</h1>
 
-  <div class="grid-container"></div>
-  <input type="color" class="color-picker" value="#ff0000">
-  <button class="eraser-button">ERASE</button>
+		<ul class="personal-links"> 
+			<li><a href="https://github.com/EJ-Lan">Github</a></li>
+			<li><a href="https://www.linkedin.com/in/ej-lanada/">LinkedIn</a></li>
+		</ul>
 
-  <script src="scripts/game.js"></script>
+	</div>
+	
+
+	<div class="container">
+		<div class="container-item">
+			<div class="grid-container"></div>
+		</div>
+		<div class="container-item" id="controls">
+			<input type="color" class="color-picker" value="#ff0000">
+			<button class="eraser-button">ERASE</button>
+		</div>
+	</div>
+
+	<script src="scripts/game.js"></script>
 </body>
 </html>
