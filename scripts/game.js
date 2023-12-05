@@ -1,4 +1,10 @@
 let gridNum = 16; // Number of square divs
+let isMouseDown = false; // Mouse down starts as false
+let color = '#ff0000'; // Initialize color
+
+let changeColor = (element) => {
+    element.style.backgroundColor = color;
+}
 
 let createGrid = (gridNum) => {
     const gridContainer = document.querySelector('.grid-container');
@@ -14,6 +20,35 @@ let createGrid = (gridNum) => {
         }
         gridContainer.appendChild(gridRow);
     }
+
+    let gridBoxes = document.querySelectorAll('.grid-box');
+
+    gridBoxes.forEach(box => {
+        box.addEventListener('mousedown', () => {
+            isMouseDown = true;
+            changeColor(box);
+        });
+
+        box.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                changeColor(box);
+            }
+        });
+
+        box.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    });
+
+    const colorPicker = document.querySelector('.color-picker');
+    colorPicker.addEventListener('input', (event) => {
+        color = event.target.value;
+    });
+
 }
 
 createGrid(gridNum);
+
+document.addEventListener('mouseup', () => {
+    isMouseDown = false;
+});
